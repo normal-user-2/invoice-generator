@@ -28,22 +28,22 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copy config nginx
-RUN echo "server {
-
-  listen 80;
-
-  location / {
-    root   /usr/share/nginx/html;
-    index  index.html index.htm;
-    try_files $uri /index.html =404;
-  }
-
-  error_page   500 502 503 504  /50x.html;
-
-  location = /50x.html {
-    root   /usr/share/nginx/html;
-  }
-}" > /etc/nginx/conf.d/default.conf
+RUN echo "server {" > /etc/nginx/conf.d/default.conf
+RUN echo "" >> /etc/nginx/conf.d/default.conf
+RUN echo "  listen 80;" >> /etc/nginx/conf.d/default.conf
+RUN echo "" >> /etc/nginx/conf.d/default.conf
+RUN echo "  location / {" >> /etc/nginx/conf.d/default.conf
+RUN echo "    root   /usr/share/nginx/html;" >> /etc/nginx/conf.d/default.conf
+RUN echo "    index  index.html index.htm;" >> /etc/nginx/conf.d/default.conf
+RUN echo "    try_files $uri /index.html =404;" >> /etc/nginx/conf.d/default.conf
+RUN echo "  }" >> /etc/nginx/conf.d/default.conf
+RUN echo "" >> /etc/nginx/conf.d/default.conf
+RUN echo "  error_page   500 502 503 504  /50x.html;" >> /etc/nginx/conf.d/default.conf
+RUN echo "" >> /etc/nginx/conf.d/default.conf
+RUN echo "  location = /50x.html {" >> /etc/nginx/conf.d/default.conf
+RUN echo "    root   /usr/share/nginx/html;" >> /etc/nginx/conf.d/default.conf
+RUN echo "  }" >> /etc/nginx/conf.d/default.conf
+RUN echo "}" >> /etc/nginx/conf.d/default.conf
 
 WORKDIR /usr/share/nginx/html
 
